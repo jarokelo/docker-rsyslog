@@ -5,8 +5,9 @@ RUN apk add --update rsyslog \
 
 EXPOSE 514 514/udp
 
-VOLUME [ "/var/log" ]
-
 COPY rsyslog.conf /etc/rsyslog.conf
+
+RUN touch /var/log/messages /var/log/secure /var/log/maillog /var/log/cron /var/log/spooler /var/log/boot.log
+VOLUME [ "/var/log" ]
 
 ENTRYPOINT [ "rsyslogd", "-n" ]
