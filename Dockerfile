@@ -10,4 +10,6 @@ COPY rsyslog.conf /etc/rsyslog.conf
 RUN touch /var/log/messages /var/log/secure /var/log/maillog /var/log/cron /var/log/spooler /var/log/boot.log
 VOLUME [ "/var/log" ]
 
-ENTRYPOINT [ "rsyslogd", "-n" ]
+COPY rsyslogd-entry.sh /usr/local/bin/
+
+ENTRYPOINT [ "rsyslogd-entry.sh" ]
